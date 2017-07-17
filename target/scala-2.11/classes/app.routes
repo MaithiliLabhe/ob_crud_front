@@ -1,0 +1,10 @@
+GET     /                           controllers.MainController.index
+GET     /users	                    controllers.MainController.getUsers
+
+POST    /users	                    controllers.MainController.addUser
+POST    /searchUser		            controllers.MainController.getUserByName
+DELETE  /deleteUser/:name         	controllers.MainController.deleteUser(name: String)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,71 @@
+@import helper._
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Play with MongoDB</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.versioned("images/favicon.png")'>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src='@routes.Assets.versioned("javascripts/script.js")' type="text/javascript"></script>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <h3>Add Users to our system</h3>
+
+            @form(routes.MainController.addUser()) {
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input name="name" id="name" type="text" class="form-control" required >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input name="email" id="email" type="email" class="form-control" required >
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add User</button>
+            }
+
+            <div>
+                <h3>Search with users name</h3>
+                @form(routes.MainController.getUserByName(), 'role -> "search", 'id -> "searchForm") {
+                    <div class="form-group">
+                        <input id="searchString" name="searchString" type="search" value="" class="form-control" required >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                }
+            </div>
+            <div id="searchResult" style="display:none">
+                <h3>Search result</h3>
+                <table id="resultTable" class="table table-bordered table-hover">
+                    <thead>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                    </thead>
+                </table>
+            </div>
+            <div >
+                <p id="noResult" class="alert alert-warning" style="display:none">No matching results found</p>
+            </div>
+
+            <div>
+                <h3>Existing users in our system</h3>
+                <p id="noUsers" class="alert alert-warning" style="display:none">No users found in system</p>
+                <table id="persons" class="table table-bordered table-hover" style="display:none">
+                    <thead>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td></td>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </body>
+</html>
